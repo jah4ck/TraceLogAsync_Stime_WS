@@ -15,11 +15,8 @@ namespace TraceLogAsync
         
         private static LogWriter instance;
         private static Queue<Log> logQueue;
-        //private static string logDir = @"D:\DATA\";//ajouter dans conf
-        //private static string logFile = ConfigurationManager.AppSettings["logFile"];//ajouter dans conf
         private static int maxLogAge = 1;//age en seconde (toutes les x seconde on met à jour les log)
         private static int queueSize = 4000;//nombre dans queue (toutes les x ligne on met a jour les log)
-        //private static string CodeAppli = ConfigurationManager.AppSettings["CodeAppli"];
         private static DateTime LastFlushed = DateTime.Now.AddMinutes(-1);
 
         
@@ -137,14 +134,16 @@ namespace TraceLogAsync
                             {
                                 if (entry.FormatSortie=="LOGWS")
                                 {
-                                    if (entry.Message.Length>5)
-                                    {
-                                        log.WriteLine(string.Format("{0}\t{1}", entry.LogTime, entry.Message));
-                                    }
+                                    
+                                    log.WriteLine(string.Format("{0}\t{1}", entry.LogTime, entry.Message));
+                                    
                                 }
                                 else
                                 {
-                                    log.WriteLine(entry.Message);
+                                    if (entry.Message.Length > 5)
+                                    {
+                                        log.WriteLine(entry.Message);
+                                    }
                                 }
                                 
                             }
