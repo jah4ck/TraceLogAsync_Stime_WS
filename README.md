@@ -37,3 +37,16 @@ using (FileStream fs = File.Open(logPath, FileMode.Append, FileAccess.Write))
     }
 }
 ```
+
+>Paramètres "FormatSortie" : 
+* "PDV" => un répertoire par pdv
+* "CONCAT" => un fichier concaténé contenant l'ensemble des résultats
+* "LOGWS" => Log les erreur ou info du web service
+
+>Si message inférieur ou égale à 5 caractère : 
+* On ne trace pas l'info dans le fichier de résultat
+* On log dans la liste "AUCUN RESULTAT"
+
+>Si message suppérieur à 5 caractère :
+* On trace dans le fichier de résultat
+* On log dans la liste "OK"
