@@ -134,8 +134,10 @@ namespace TraceLogAsync
                             {
                                 if (entry.FormatSortie=="LOGWS")
                                 {
-                                    
-                                    log.WriteLine(string.Format("{0}\t{1}", entry.LogTime, entry.Message));
+                                    if (entry.Message.Length > 5)
+                                    {
+                                        log.WriteLine(string.Format("{0}\t{1}", entry.LogTime, entry.Message));
+                                    }
                                     
                                 }
                                 else
